@@ -14,6 +14,6 @@ namespace ReviewsSite.Repositories
 
         void Update(T obj);
 
-        void Delet(T obj);
+        void Delete(T obj);
     }
 }
