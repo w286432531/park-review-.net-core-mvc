@@ -23,8 +23,8 @@ namespace ReviewsSite
         }
         protected override void  OnModelCreating(ModelBuilder modelbuilder)
         {
-            modelbuilder.Entity<Review>().HasData(
-                 new Review() { Id = 1, ParkId =2340 });
+            //modelbuilder.Entity<Review>().HasData(
+            //     new Review() { Id = 1});
                
 
             modelbuilder.Entity<Park>().HasData(

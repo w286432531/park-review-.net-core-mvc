@@ -10,8 +10,9 @@ namespace ReviewsSite.Controllers
 {
     public class ParkController : Controller
     {
-        private ParkContext _parkRepo;
-        public ParkController(ParkContext parkRepo)
+        private IRepository<Park> _parkRepo;
+
+        public ParkController(IRepository<Park> parkRepo)
         {
             this._parkRepo = parkRepo;
         }
@@ -31,10 +32,25 @@ namespace ReviewsSite.Controllers
         {
             return View();
         }
-        public IActionResult Edit()
+        // get method for edit
+        public IActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            } 
+            else
+            {
+                int x = id.GetValueOrDefault();
+                return View(_parkRepo.GetByID(x));
+            }
+            
         }
-
+        [HttpPost]
+        public IActionResult Edit(Park park)
+        {
+            _parkRepo.Update(park);
+            return RedirectToAction("Index");
+        }
     }
 }
