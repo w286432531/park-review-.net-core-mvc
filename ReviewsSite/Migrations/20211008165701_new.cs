@@ -2,7 +2,7 @@
 
 namespace ReviewsSite.Migrations
 {
-    public partial class Initial : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,6 +43,21 @@ namespace ReviewsSite.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Parks",
+                columns: new[] { "Id", "HasHandicapAccess", "IsDogFriendly", "Name", "ParkType" },
+                values: new object[] { 1, true, true, "Edgewater", "Beach" });
+
+            migrationBuilder.InsertData(
+                table: "Parks",
+                columns: new[] { "Id", "HasHandicapAccess", "IsDogFriendly", "Name", "ParkType" },
+                values: new object[] { 2, false, true, "Mohican", "River" });
+
+            migrationBuilder.InsertData(
+                table: "Parks",
+                columns: new[] { "Id", "HasHandicapAccess", "IsDogFriendly", "Name", "ParkType" },
+                values: new object[] { 3, false, false, "Kurtz", "Sport" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_ParkId",

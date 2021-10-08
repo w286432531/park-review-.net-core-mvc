@@ -9,8 +9,8 @@ using ReviewsSite;
 namespace ReviewsSite.Migrations
 {
     [DbContext(typeof(ParkContext))]
-    [Migration("20211006154317_Initial")]
-    partial class Initial
+    [Migration("20211008165701_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,6 +42,32 @@ namespace ReviewsSite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Parks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            HasHandicapAccess = true,
+                            IsDogFriendly = true,
+                            Name = "Edgewater",
+                            ParkType = "Beach"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            HasHandicapAccess = false,
+                            IsDogFriendly = true,
+                            Name = "Mohican",
+                            ParkType = "River"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            HasHandicapAccess = false,
+                            IsDogFriendly = false,
+                            Name = "Kurtz",
+                            ParkType = "Sport"
+                        });
                 });
 
             modelBuilder.Entity("ReviewsSite.Models.Review", b =>

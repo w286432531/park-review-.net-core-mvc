@@ -18,7 +18,7 @@ namespace ReviewsSite.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View(_parkRepo.GetAll());
         }
         public IActionResult Create()
         {
@@ -42,12 +42,13 @@ namespace ReviewsSite.Controllers
             else
             {
                 int x = id.GetValueOrDefault();
-                return View(_parkRepo.GetByID(x));
+                Park park = _parkRepo.GetByID(x);
+                return View(park);
             }
             
         }
         [HttpPost]
-        public IActionResult Edit(Park park)
+        public IActionResult Edit(int id, Park park)
         {
             _parkRepo.Update(park);
             return RedirectToAction("Index");

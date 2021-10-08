@@ -3,3 +3,11 @@
 *@
 @{
 }
+<ul>
+    @foreach (var course in Model)
+    {
+        <li>
+            @course.Id - @course.Name
+        </li>
+    }
+</ul>
