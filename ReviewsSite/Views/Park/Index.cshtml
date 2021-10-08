@@ -1,10 +1,13 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-
-
-<h1>Welcome to my Code Blooded Park Review Site... It's a Code World'</h1>
 @{
 }
-<h2><a href="/Park/Index">Parks</a></h2>
-<
+<ul>
+    @foreach (var course in Model)
+    {
+        <li>
+            @course.Id - @course.Name
+        </li>
+    }
+</ul>

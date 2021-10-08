@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ReviewsSite.Models;
+using ReviewsSite.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ namespace ReviewsSite.Controllers
 {
     public class HomeController : Controller
     {
+        private IRepository<Park> _parkRepo;
         public IActionResult Index()
         {
             return View();
