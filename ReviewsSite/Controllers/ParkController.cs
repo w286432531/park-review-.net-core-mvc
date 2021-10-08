@@ -28,10 +28,12 @@ namespace ReviewsSite.Controllers
         {
             return View();
         }
-        public IActionResult Detail()
+        public IActionResult Detail(int id)
         {
-            return View();
+            Park park = _parkRepo.GetByID(id);
+            return View(park);
         }
+        
         // get method for edit
         public IActionResult Edit(int? id)
         {
