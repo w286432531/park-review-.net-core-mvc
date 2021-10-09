@@ -1,13 +1,22 @@
-﻿@*
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-<ul>
-    @foreach (var course in Model)
+<ul style="list-style-type:none">
+    @foreach (var Park in Model)
     {
         <li>
-            @course.Id - @course.Name
+            @Park.Id - @Park.Name 
+            <a href="/Park/Edit/@Park.Id">Edit</a>
+            <a href="/Park/Detail/@Park.Id">Details</a>
+            <a href="/Park/Delete/@Park.Id">Delete</a>
         </li>
-    }
+     }
+
+    <li><a href="/Park/Create">Create New</a></li>
 </ul>
