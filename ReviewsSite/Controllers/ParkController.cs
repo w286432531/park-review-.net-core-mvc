@@ -20,10 +20,21 @@ namespace ReviewsSite.Controllers
         {
             return View(_parkRepo.GetAll());
         }
+
         public IActionResult Create()
         {
-            return View();
+            return View(new Park());
         }
+        [HttpPost]
+        public IActionResult Create(Park newPark)
+        {
+            ViewBag.Result = "You've successfully added a new park!";
+            _parkRepo.Create(newPark);
+            return View();
+            
+        }
+
+        
         public IActionResult Delete()
         {
             return View();
