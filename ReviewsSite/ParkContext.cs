@@ -23,10 +23,12 @@ namespace ReviewsSite
         }
         protected override void  OnModelCreating(ModelBuilder modelbuilder)
         {
-            //modelbuilder.Entity<Review>().HasData(
-            //     new Review() { Id = 1});
-               
-
+            modelbuilder.Entity<Review>().HasData(
+                 new Review() { Id = 1, ParkId = 1, ReviewerName = "Crys", Comment = "I really like take my dog to poop here.", StarRating = 1 },
+                 new Review() { Id = 2, ParkId = 2, ReviewerName = "Richard", Comment = "This place is great, I love to canoe!!", StarRating = 5 },
+                 new Review() { Id = 3, ParkId = 3, ReviewerName = "Kayley", Comment = "The park is nice.", StarRating = 3 }
+                );
+                 
             modelbuilder.Entity<Park>().HasData(
                new Park() { Id = 1, Name = "Edgewater", HasHandicapAccess = true, IsDogFriendly = true, ParkType = "Beach", },
                new Park() { Id = 2, Name = "Mohican", HasHandicapAccess = false, IsDogFriendly = true, ParkType = "River" },
