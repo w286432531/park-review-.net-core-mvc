@@ -57,7 +57,7 @@ namespace ReviewsSite.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ParkId,ReviewerName,Comment,StarRating")] Review review)
+        public async Task<IActionResult> Create([Bind("Id,Parks,Reviewer,Comment,StarRating")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,9 @@ namespace ReviewsSite.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["Parks"] = new SelectList(_context.Parks, "Id", "Name", review.ParkId);
+
             return View(review);
         }
 
