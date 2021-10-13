@@ -48,7 +48,7 @@ namespace ReviewsSite.Controllers
         // GET: Review/Create
         public IActionResult Create()
         {
-            ViewData["ParkId"] = new SelectList(_context.Parks, "Id", "Id");
+            ViewData["Parks"] = new SelectList(_context.Parks, "Id", "Name");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace ReviewsSite.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ParkId,ReviewerName,Comment,StarRating")] Review review)
+        public async Task<IActionResult> Create([Bind("Id,Parks,Reviewer,Comment,StarRating")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace ReviewsSite.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParkId"] = new SelectList(_context.Parks, "Id", "Id", review.ParkId);
+            ViewData["Parks"] = new SelectList(_context.Parks, "Id", "Park Name", review.ParkId);
             return View(review);
         }
 
@@ -82,7 +82,7 @@ namespace ReviewsSite.Controllers
             {
                 return NotFound();
             }
-            ViewData["ParkId"] = new SelectList(_context.Parks, "Id", "Id", review.ParkId);
+            ViewData["Parks"] = new SelectList(_context.Parks, "Id", "Name", review.ParkId);
             return View(review);
         }
 
@@ -91,7 +91,7 @@ namespace ReviewsSite.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ParkId,ReviewerName,Comment,StarRating")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Parks,ReviewerName,Comment,StarRating")] Review review)
         {
             if (id != review.Id)
             {
@@ -118,7 +118,7 @@ namespace ReviewsSite.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParkId"] = new SelectList(_context.Parks, "Id", "Id", review.ParkId);
+            ViewData["Parks"] = new SelectList(_context.Parks, "Id", "Name", review.ParkId);
             return View(review);
         }
 
