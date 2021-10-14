@@ -10,7 +10,7 @@ namespace ReviewsSite.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository<Park> _parkRepo;
+ 
         public IActionResult Index()
         {
             return View();
