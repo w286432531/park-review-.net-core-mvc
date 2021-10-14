@@ -14,11 +14,4 @@ namespace ReviewsSite.Models
         public string ParkType { get; set; }
         public virtual List<Review> Reviews { get; set; }
     }
-    //public enum ParkType
-    //{
-    //    Museum,
-    //    Park,
-    //    Venue,
-    //    HistoricalSite
-    //}
 }

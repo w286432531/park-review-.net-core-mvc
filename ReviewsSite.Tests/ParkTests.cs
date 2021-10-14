@@ -11,13 +11,11 @@ namespace ReviewsSite.Tests
         [Fact]
         public void Park_Should_Set_Id()
         {
-            // Arrange
-
-            // Act
+         
             sut = new Park();
             sut.Id = 5;
 
-            //Assert
+           
             Assert.Equal("5", sut.Id.ToString());
         }
 
