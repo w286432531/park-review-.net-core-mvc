@@ -26,7 +26,7 @@ namespace ReviewsSite
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(); //does AddControllerWithViews and AddRazorPages
+            services.AddMvc().AddRazorRuntimeCompilation(); //does AddControllerWithViews and AddRazorPages
             services.AddControllersWithViews();
             services.AddDbContext<ParkContext>();
 
