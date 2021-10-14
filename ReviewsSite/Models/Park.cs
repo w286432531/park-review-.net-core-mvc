@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,17 +9,11 @@ namespace ReviewsSite.Models
     public class Park
     {
         public int Id { get; set; } //Always start with ID
+        [Required]
         public string Name { get; set; }
         public bool HasHandicapAccess { get; set; }
         public bool IsDogFriendly { get; set; }
         public string ParkType { get; set; }
         public virtual List<Review> Reviews { get; set; }
     }
-    //public enum ParkType
-    //{
-    //    Museum,
-    //    Park,
-    //    Venue,
-    //    HistoricalSite
-    //}
 }
