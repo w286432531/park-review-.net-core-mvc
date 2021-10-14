@@ -22,6 +22,10 @@ namespace ReviewsSite.Controllers
         // GET: Review
         public async Task<IActionResult> Index()
         {
+            if (TempData["Result"] != null)
+            {
+                ViewBag.Result = TempData["Result"].ToString();
+            }
             var parkContext = _context.Reviews.Include(r => r.Park);
             return View(await parkContext.ToListAsync());
         }
@@ -61,6 +65,7 @@ namespace ReviewsSite.Controllers
         {
             if (ModelState.IsValid)
             {
+                TempData["Result"] = "You've successfully added a new review!";
                 _context.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

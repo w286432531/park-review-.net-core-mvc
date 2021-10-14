@@ -18,6 +18,10 @@ namespace ReviewsSite.Controllers
         }
         public IActionResult Index()
         {
+            if (TempData["Result"] != null)
+            {
+                ViewBag.Result = TempData["Result"].ToString();
+            }      
             return View(_parkRepo.GetAll());
         }
 
@@ -28,10 +32,17 @@ namespace ReviewsSite.Controllers
         [HttpPost]
         public IActionResult Create(Park newPark)
         {
-            ViewBag.Result = "You've successfully added a new park!";
-            _parkRepo.Create(newPark);
-            return View();
-            
+            if (!String.IsNullOrEmpty(newPark.Name))
+            {
+                TempData["Result"] = "You've successfully added a new park!";
+                _parkRepo.Create(newPark);
+                return RedirectToAction("Index", "Park", newPark);
+            }
+            else
+            {
+                ViewBag.Error = "There is a error please try again.";
+                return View();
+            }           
         }
 
         public IActionResult Delete(int id)
