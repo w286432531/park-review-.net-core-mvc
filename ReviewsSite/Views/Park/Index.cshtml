@@ -1,28 +1,40 @@
-﻿
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model IEnumerable<ReviewsSite.Models.Park>
 
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-
-<h1>Park Index</h1>
+<h1>Parks</h1>
 
 <p>@ViewBag.Result</p>
-
-<ul style="list-style-type:none">
-    @foreach (var Park in Model)
-    {
-        <li>
-            @Park.Id - @Park.Name 
-            <a href="/Park/Edit/@Park.Id">Edit</a>
-            <a href="/Park/Detail/@Park.Id">Details</a>
-            <a href="/Park/Delete/@Park.Id">Delete</a>
-        </li>
-     }
-
-    <li><a href="/Park/Create">Create New</a></li>
-</ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Park Number
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @*<td>
+                    <a href="/Park/Edit/@item.Id">Edit</a>
+                </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+<a href="/Park/Create">Create New</a>
