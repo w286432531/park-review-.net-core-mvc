@@ -98,7 +98,7 @@ namespace ReviewsSite.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Parks,ReviewerName,Comment,StarRating")] Review review)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ParkId,ReviewerName,Comment,StarRating")] Review review)
         {
             if (id != review.Id)
             {

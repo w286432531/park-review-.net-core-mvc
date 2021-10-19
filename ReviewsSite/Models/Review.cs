@@ -13,6 +13,7 @@ namespace ReviewsSite.Models
         public virtual Park Park { get; set; }
         [Display(Name = "Reviewer")]
         public string ReviewerName { get; set; }
+        [Display(Name = "Review")]
         public string Comment { get; set; }
         [Display(Name = "Rating")]
         [Range(1, 5, ErrorMessage = "Please give this park a rating.")]
