@@ -15,7 +15,7 @@ namespace ReviewsSite.Models
         public string ReviewerName { get; set; }
         public string Comment { get; set; }
         [Display(Name = "Rating")]
-        [Range(1, 5)]
+        [Range(1, 5, ErrorMessage = "Please give this park a rating.")]
         public int StarRating { get; set; }
     }
 

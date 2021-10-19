@@ -13,6 +13,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
+                <th>
+                    Average Rating
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +28,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
+                <td>
+                   @item.AverageRating
+                </td>
                 @*<td>
-                    <a href="/Park/Edit/@item.Id">Edit</a>
-                </td>*@
+            <a href="/Park/Edit/@item.Id">Edit</a>
+        </td>*@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
