@@ -1,7 +1,7 @@
 ﻿@model ReviewsSite.Models.Review
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Review";
 }
 
 <h1>Edit</h1>
@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Park.Name" class="control-label"></label>
+                <label asp-for="ParkId" class="control-label"></label>
                 <select asp-for="ParkId" class="form-control" asp-items="ViewBag.Parks"></select>
                 <span asp-validation-for="ParkId" class="text-danger"></span>
             </div>
@@ -30,7 +30,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="StarRating" class="control-label"></label>
-                <input asp-for="StarRating" class="form-control" />
+                <div class="stars">
+
+                </div>
+                <input asp-for="StarRating" class="form-control starRating" type="hidden" />
                 <span asp-validation-for="StarRating" class="text-danger"></span>
             </div>
             <div class="form-group">
