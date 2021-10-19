@@ -34,3 +34,8 @@ body {
 .footer {
     background-color: var(--color4);
 }
+.starIcon {
+    width: 24px;
+    margin-right: 4px;
+    cursor: pointer;
+}

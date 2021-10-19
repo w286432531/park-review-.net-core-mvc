@@ -21,8 +21,15 @@ namespace ReviewsSite.Controllers
             if (TempData["Result"] != null)
             {
                 ViewBag.Result = TempData["Result"].ToString();
-            }      
-            return View(_parkRepo.GetAll());
+            }
+
+            var parks = _parkRepo.GetAll();
+            foreach(var park in parks)
+            {
+                park.GetAverage();
+            }
+
+            return View(parks);
         }
 
         public IActionResult Create()
@@ -61,6 +68,7 @@ namespace ReviewsSite.Controllers
         public IActionResult Detail(int id)
         {
             Park park = _parkRepo.GetByID(id);
+            park.GetAverage();
             return View(park);
         }
 
