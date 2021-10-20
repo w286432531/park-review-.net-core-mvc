@@ -30,9 +30,9 @@ namespace ReviewsSite
                 );
                  
             modelbuilder.Entity<Park>().HasData(
-               new Park() { Id = 1, Name = "Edgewater", HasHandicapAccess = true, IsDogFriendly = true, ParkType = "Beach", },
-               new Park() { Id = 2, Name = "Mohican", HasHandicapAccess = false, IsDogFriendly = true, ParkType = "River" },
-               new Park() { Id = 3, Name = "Kurtz", HasHandicapAccess = false, IsDogFriendly = false, ParkType = "Sport" }
+               new Park() { Id = 1, Name = "Edgewater", HasHandicapAccess = true, IsDogFriendly = true, ParkType = "Beach", ParkDescription = "The 147 acre Edgewater Park is the westernmost park in Cleveland Metroparks Lakefront Reservation. Edgewater Park features 9000 feet of shoreline, beaches, boat ramps,  fishing pier, picnic areas and grills. The park is both wheelchair accessible and dog friendly. Open daily 6am to 11pm. Located at 6500 Cleveland Memorial Shoreway in Cleveland" },
+               new Park() { Id = 2, Name = "Mohican", HasHandicapAccess = false, IsDogFriendly = true, ParkType = "River", ParkDescription = "Has thousands of acres covered in woods and offers many hiking trails and water features. There is also a full-service lodge and family campground with a pool. Hours of operation vary depending on area and is located at 3116 OH-3 in Loudonville,Ohio." },
+               new Park() { Id = 3, Name = "Kurtz", HasHandicapAccess = false, IsDogFriendly = false, ParkType = "Sport", ParkDescription = "Kurtz  park in Cuyahoga County has an elevation of 856 feet and is situated west of Parma Heights, located near Brook Park Fire Department Station 4." }
             );
         }
     }

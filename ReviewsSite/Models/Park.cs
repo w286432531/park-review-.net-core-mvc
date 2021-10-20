@@ -18,6 +18,9 @@ namespace ReviewsSite.Models
         public bool IsDogFriendly { get; set; }
         [Display(Name = "Park Type")]
         public string ParkType { get; set; }
+        [Display(Name = "Park Description")]
+        [DataType(DataType.MultilineText)]
+        public string ParkDescription { get; set; }
         public virtual List<Review> Reviews { get; set; }
         [NotMapped]
         [Display(Name = "Rating")]
@@ -34,5 +37,6 @@ namespace ReviewsSite.Models
             }
             
         }
+        
     }
 }
