@@ -18,21 +18,29 @@ namespace ReviewsSite.Models
         public bool IsDogFriendly { get; set; }
         [Display(Name = "Park Type")]
         public string ParkType { get; set; }
+        [Display(Name = "Park Description")]
+        [DataType(DataType.MultilineText)]
+        public string ParkDescription { get; set; }
         public virtual List<Review> Reviews { get; set; }
         [NotMapped]
         [Display(Name = "Rating")]
-        public virtual double AverageRating { get; set; }
-        public void GetAverage()
-        {
-            if(Reviews.Count > 0)
+        public virtual double AverageRating { 
+            get 
             {
-                AverageRating = Math.Round(Reviews.Select(r => r.StarRating).Average(), 1);
-            }
-            else
-            {
-                AverageRating = 0;
-            }
-            
+                if (Reviews.Count > 0)
+                {
+                    return Math.Round(Reviews.Select(r => r.StarRating).Average(), 1);
+
+                }
+                else
+                {
+                    return 0;
+                }
+            } 
         }
+
+        
     }
+      
+    
 }

@@ -72,7 +72,6 @@ namespace ReviewsSite.Controllers
                     parks = parks.OrderBy(park => park.Id);
                     break;
             }
-
             return View(parks);
         }
 
@@ -112,7 +111,7 @@ namespace ReviewsSite.Controllers
         public IActionResult Detail(int id)
         {
             Park park = _parkRepo.GetByID(id);
-            park.GetAverage();
+            //park.GetAverage();
             return View(park);
         }
 
