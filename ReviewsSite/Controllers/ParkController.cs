@@ -24,10 +24,10 @@ namespace ReviewsSite.Controllers
             }
 
             var parks = _parkRepo.GetAll();
-            foreach(var park in parks)
-            {
-                park.GetAverage();
-            }
+            //foreach(var park in parks)
+            //{
+            //    park.GetAverage();
+            //}
 
             return View(parks);
         }
@@ -68,7 +68,7 @@ namespace ReviewsSite.Controllers
         public IActionResult Detail(int id)
         {
             Park park = _parkRepo.GetByID(id);
-            park.GetAverage();
+            //park.GetAverage();
             return View(park);
         }
 

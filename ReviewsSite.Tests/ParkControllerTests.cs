@@ -45,6 +45,8 @@ namespace ReviewsSite.Tests
         public void Detail_Shows_Detail_Of_Park()
         {
             var park = new Park();
+           
+            parkRepo.Create(park);
             var detail = sut.Detail(park.Id);
 
             Assert.IsType<ViewResult>(detail);
