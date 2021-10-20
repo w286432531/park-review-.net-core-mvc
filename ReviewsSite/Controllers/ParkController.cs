@@ -19,19 +19,38 @@ namespace ReviewsSite.Controllers
         public IActionResult Index(string sortOrder, string searchString, bool isDogFriendly, bool hasHandicapAccess)
         {   //add result from create park 
             if (TempData["Result"] != null)
-            {
+            {   //add message when a park is created
                 ViewBag.Result = TempData["Result"].ToString();
             }
-
+            //get all parks from database
             var parks = _parkRepo.GetAll();
-            foreach (var park in parks)
-            {
-                park.GetAverage();
+            //check if searchString is empty
+            //run this code when search string is not empty
+            if (!String.IsNullOrEmpty(searchString))
+            {   
+                ViewBag.SearchString = searchString;
+                //search through all parks where park name to lowercase contains search string to lowercase
+                parks = parks.Where(park => (park.Name.ToLower()).Contains(searchString.ToLower()));
             }
+            // if isDogFriendly checkbox is checked
+            if (isDogFriendly)
+            {   //list of parks = all parks where IsDogFriendly is true
+                parks = parks.Where(park => park.IsDogFriendly);
+            }// if hasHandicapAccess checkbox is checked
+            if (hasHandicapAccess)
+            {   //list of parks = all parks where HasHandicapAccess is true
+                parks = parks.Where(park => park.HasHandicapAccess);
+            }
+            // set sortOrder base on what's being pass in from park index
+            // When park number is clicked
+            // if sortOrder is empty. sort order = id_desc else it's empty which is default in switch statement
             ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder)? "id_desc" : "";
-            ViewBag.IdSortParm = sortOrder == "id" ? "id_desc" : "id";
+            // When park name is clicked 
+            // if sortOrder is name. sort order = name_desc else sort order is name
             ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
+            // if sortOrder is rating. sort order = rating_desc else it's rating.
             ViewBag.RatingSortParm = sortOrder == "rating" ? "rating_desc" : "rating";
+            // sort list of parks base on the sort order
             switch (sortOrder)
             {
                 case "id_desc":
@@ -53,18 +72,7 @@ namespace ReviewsSite.Controllers
                     parks = parks.OrderBy(park => park.Id);
                     break;
             }
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                parks = parks.Where(park => (park.Name.ToLower()).Contains(searchString.ToLower()));
-            }
-            if (isDogFriendly)
-            {
-                parks = parks.Where(park => park.IsDogFriendly);
-            }
-            if (hasHandicapAccess)
-            {
-                parks = parks.Where(park => park.HasHandicapAccess);
-            }
+
             return View(parks);
         }
 

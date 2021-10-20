@@ -8,7 +8,7 @@
 @using (Html.BeginForm())
 {
 <p>
-    Find by name: @Html.TextBox("SearchString")
+    Find by name: <input type="text" name="SearchString" value="@ViewBag.SearchString" />
     @Html.DisplayNameFor(model => model.IsDogFriendly)
     @Html.CheckBox("isDogFriendly")
     @Html.DisplayNameFor(model => model.HasHandicapAccess)
@@ -21,13 +21,13 @@
     <thead>
         <tr>
             <th>
-                @Html.ActionLink("Park Number", "Index", new { sortOrder = ViewBag.IdSortParm })  
+                @Html.ActionLink("Park Number", "Index", new { sortOrder = ViewBag.IdSortParm, searchString = ViewBag.SearchString })  
             </th>
             <th>
-                @Html.ActionLink(@Html.DisplayNameFor(model => model.Name), "Index", new { sortOrder = ViewBag.NameSortParm }) 
+                @Html.ActionLink(@Html.DisplayNameFor(model => model.Name), "Index", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.SearchString }) 
             </th>
             <th>
-                @Html.ActionLink("Average Rating", "Index", new { sortOrder = ViewBag.RatingSortParm })            
+                @Html.ActionLink("Average Rating", "Index", new { sortOrder = ViewBag.RatingSortParm, searchString = ViewBag.SearchString })            
             </th>
         </tr>
     </thead>
