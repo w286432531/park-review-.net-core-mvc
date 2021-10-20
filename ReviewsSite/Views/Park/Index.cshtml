@@ -5,19 +5,29 @@
 
 
 <h1>Parks</h1>
-
+@using (Html.BeginForm())
+{
+<p>
+    Find by name: @Html.TextBox("SearchString")
+    @Html.DisplayNameFor(model => model.IsDogFriendly)
+    @Html.CheckBox("isDogFriendly")
+    @Html.DisplayNameFor(model => model.HasHandicapAccess)
+    @Html.CheckBox("hasHandicapAccess")
+    <input type="submit" value="Search" />
+</p>
+}
 <p>@ViewBag.Result</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Park Number
+                @Html.ActionLink("Park Number", "Index", new { sortOrder = ViewBag.IdSortParm })  
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink(@Html.DisplayNameFor(model => model.Name), "Index", new { sortOrder = ViewBag.NameSortParm }) 
             </th>
             <th>
-                Average Rating
+                @Html.ActionLink("Average Rating", "Index", new { sortOrder = ViewBag.RatingSortParm })            
             </th>
         </tr>
     </thead>
