@@ -32,11 +32,16 @@ namespace ReviewsSite.Controllers
                 //search through all parks where park name to lowercase contains search string to lowercase
                 parks = parks.Where(park => (park.Name.ToLower()).Contains(searchString.ToLower()));
             }
+            // save data to use it next time
+            ViewBag.isDogFriendly = isDogFriendly;
             // if isDogFriendly checkbox is checked
             if (isDogFriendly)
             {   //list of parks = all parks where IsDogFriendly is true
                 parks = parks.Where(park => park.IsDogFriendly);
-            }// if hasHandicapAccess checkbox is checked
+            }
+            // save data to use it next time
+            ViewBag.hasHandicapAccess = hasHandicapAccess;
+            // if hasHandicapAccess checkbox is checked
             if (hasHandicapAccess)
             {   //list of parks = all parks where HasHandicapAccess is true
                 parks = parks.Where(park => park.HasHandicapAccess);
@@ -111,7 +116,6 @@ namespace ReviewsSite.Controllers
         public IActionResult Detail(int id)
         {
             Park park = _parkRepo.GetByID(id);
-            //park.GetAverage();
             return View(park);
         }
 
