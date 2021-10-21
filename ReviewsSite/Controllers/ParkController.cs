@@ -16,19 +16,62 @@ namespace ReviewsSite.Controllers
         {
             this._parkRepo = parkRepo;
         }
-        public IActionResult Index()
-        {
+        public IActionResult Index(string sortOrder, string searchString, bool isDogFriendly, bool hasHandicapAccess)
+        {   //add result from create park 
             if (TempData["Result"] != null)
-            {
+            {   //add message when a park is created
                 ViewBag.Result = TempData["Result"].ToString();
             }
-
+            //get all parks from database
             var parks = _parkRepo.GetAll();
-            //foreach(var park in parks)
-            //{
-            //    park.GetAverage();
-            //}
-
+            //check if searchString is empty
+            //run this code when search string is not empty
+            if (!String.IsNullOrEmpty(searchString))
+            {   
+                ViewBag.SearchString = searchString;
+                //search through all parks where park name to lowercase contains search string to lowercase
+                parks = parks.Where(park => (park.Name.ToLower()).Contains(searchString.ToLower()));
+            }
+            // if isDogFriendly checkbox is checked
+            if (isDogFriendly)
+            {   //list of parks = all parks where IsDogFriendly is true
+                parks = parks.Where(park => park.IsDogFriendly);
+            }// if hasHandicapAccess checkbox is checked
+            if (hasHandicapAccess)
+            {   //list of parks = all parks where HasHandicapAccess is true
+                parks = parks.Where(park => park.HasHandicapAccess);
+            }
+            // set sortOrder base on what's being pass in from park index
+            // When park number is clicked
+            // if sortOrder is empty. sort order = id_desc else it's empty which is default in switch statement
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder)? "id_desc" : "";
+            // When park name is clicked 
+            // if sortOrder is name. sort order = name_desc else sort order is name
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
+            // if sortOrder is rating. sort order = rating_desc else it's rating.
+            ViewBag.RatingSortParm = sortOrder == "rating" ? "rating_desc" : "rating";
+            // sort list of parks base on the sort order
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    parks = parks.OrderByDescending(park => park.Id);
+                    break;
+                case "name":
+                    parks = parks.OrderBy(park => park.Name);
+                    break;
+                case "name_desc":
+                    parks = parks.OrderByDescending(park => park.Name);
+                    break;
+                case "rating":
+                    parks = parks.OrderBy(park => park.AverageRating);
+                    break;
+                case "rating_desc":
+                    parks = parks.OrderByDescending(park => park.AverageRating);
+                    break;
+                default:
+                    parks = parks.OrderBy(park => park.Id);
+                    break;
+            }
             return View(parks);
         }
 
@@ -49,17 +92,17 @@ namespace ReviewsSite.Controllers
             {
                 ViewBag.Error = "There is a error please try again.";
                 return View();
-            }           
+            }
         }
 
         public IActionResult Delete(int id)
         {
             Park park = _parkRepo.GetByID(id);
-           
+
             return View(park);
         }
         [HttpPost]
-        public IActionResult Delete(int id, Park park) 
+        public IActionResult Delete(int id, Park park)
         {
             Park parkDel = _parkRepo.GetByID(park.Id);
             _parkRepo.Delete(parkDel);
@@ -94,7 +137,7 @@ namespace ReviewsSite.Controllers
             return RedirectToAction("Index");
 
         }
- 
+
 
 
 
