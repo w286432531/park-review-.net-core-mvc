@@ -24,22 +24,19 @@ namespace ReviewsSite.Models
         public virtual List<Review> Reviews { get; set; }
         [NotMapped]
         [Display(Name = "Rating")]
-        public virtual double AverageRating { 
-            get 
+        public virtual double AverageRating {
+            get
             {
-                if (Reviews.Count > 0)
+                if (Reviews != null)
                 {
-                    return Math.Round(Reviews.Select(r => r.StarRating).Average(), 1);
-
+                    if (Reviews.Count > 0)
+                    {
+                        return Math.Round(Reviews.Select(r => r.StarRating).Average(), 1);
+                    }
                 }
-                else
-                {
-                    return 0;
-                }
+                return 0;
             } 
         }
-
-        
     }
       
     
