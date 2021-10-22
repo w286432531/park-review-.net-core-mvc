@@ -24,6 +24,7 @@
     font-family: 'Nosifer', cursive;
     color: darkred;
     text-shadow: 2px 2px black;
+    display: inline-block;
 }
 .grid-2 {
   display: grid;
