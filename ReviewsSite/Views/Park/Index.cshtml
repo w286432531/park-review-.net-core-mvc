@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ReviewsSite.Models.Park>
+@{
+    ViewData["Title"] = "Parks";
+}
+
+
+<h1>Parks</h1>
+@using (Html.BeginForm())
+{
+<p>
+    Find by name: <input type="text" name="SearchString" value="@ViewBag.SearchString" />
+    @Html.DisplayNameFor(model => model.IsDogFriendly)
+    @Html.CheckBox("isDogFriendly")
+    @Html.DisplayNameFor(model => model.HasHandicapAccess)
+    @Html.CheckBox("hasHandicapAccess")
+    <input type="submit" value="Search" />
+</p>
+}
+<p>@ViewBag.Result</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Park Number", "Index", new { sortOrder = ViewBag.IdSortParm, searchString = ViewBag.SearchString, isDogFriendly = ViewBag.isDogFriendly, hasHandicapAccess = ViewBag.hasHandicapAccess })  
+            </th>
+            <th>
+                @Html.ActionLink(@Html.DisplayNameFor(model => model.Name), "Index", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.SearchString, isDogFriendly = ViewBag.isDogFriendly, hasHandicapAccess = ViewBag.hasHandicapAccess }) 
+            </th>
+            <th>
+                @Html.ActionLink("Average Rating", "Index", new { sortOrder = ViewBag.RatingSortParm, searchString = ViewBag.SearchString, isDogFriendly = ViewBag.isDogFriendly, hasHandicapAccess = ViewBag.hasHandicapAccess })            
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @item.AverageRating
+                </td>
+                @*<td>
+                        <a href="/Park/Edit/@item.Id">Edit</a>
+                    </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Detail" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Park/Create">Create New</a>

@@ -1,0 +1,52 @@
+﻿
+.intro {
+  padding: 25px;
+}
+
+.section__title--index {
+  color: black;
+  padding-bottom: 1em;
+  text-align: center;
+}
+.subtitle {
+    padding-bottom: 20px;
+}
+.index__img {
+  grid-area: img;
+  max-width: 100%;
+  position: relative;
+  background-size: cover;
+  border-radius: 15px;
+}
+.code {
+    font-family: 'Source Code Pro', monospace;
+}
+.blood {
+    font-family: 'Nosifer', cursive;
+    color: darkred;
+    text-shadow: 2px 2px black;
+    display: inline-block;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-gap: 50px;
+}
+.grid-content {
+    margin: auto 0;
+}
+@media (max-width: 1200px) {
+  .grid-2 {
+    grid-template-columns: auto;
+    grid-gap: 50px;
+  }
+  .index__img {
+    max-width: 100%;
+  }
+}
+.intro-text {
+  /* position: relative;
+    margin-left: 42em;
+    padding-top: 10px;
+    bottom: 400px; */
+}
